@@ -1,2 +1,2 @@
 # News_App
-News app by flutter
+## News app by flutter
