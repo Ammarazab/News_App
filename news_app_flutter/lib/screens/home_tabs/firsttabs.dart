@@ -16,7 +16,14 @@ class _FirstTabsState extends State<FirstTabs> {
     _addPages();
     return SingleChildScrollView(
         child: Column(
-      children: [_images(), _topnews()],
+      children: [
+        _images(),
+        _topnews(),
+        _recently(),
+        SizedBox(
+          height: 24,
+        )
+      ],
     ));
   }
 
@@ -57,9 +64,17 @@ class _FirstTabsState extends State<FirstTabs> {
                 padding: const EdgeInsets.only(left: 4, bottom: 4),
                 child: Text("Top Story"),
               ),
-              _topstory(),
-              _topstory(),
-              _topstory()
+              Card(
+                child: Column(
+                  children: [
+                    _topstory(),
+                    _divider(),
+                    _topstory(),
+                    _divider(),
+                    _topstory()
+                  ],
+                ),
+              ),
             ],
           ),
         ),
@@ -67,61 +82,100 @@ class _FirstTabsState extends State<FirstTabs> {
     );
   }
 
-  Widget _topstory() {
+  Widget _recently() {
+    return Container(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Align(
+          alignment: Alignment.centerLeft,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 4, bottom: 4),
+                child: Text('Recent Update'),
+              ),
+              _recentnews(),
+              _recentnews(),
+              _recentnews()
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _divider() {
+    return Container(
+      height: 1,
+      width: double.infinity,
+      color: Colors.grey[300],
+    );
+  }
+
+  Widget _recentnews() {
     return Card(
       child: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
+          Container(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  width: 100.00,
-                  height: 100.00,
+                  width: double.infinity,
+                  height: MediaQuery.of(context).size.height / 3,
                   child: Image(
                     image: ExactAssetImage('assets/bg1.jpg'),
                     fit: BoxFit.cover,
                   ),
                 ),
-                SizedBox(
-                  width: 8,
-                ),
-                Expanded(
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0, left: 8),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'The Word Global Warming Annual Summit',
-                        maxLines: 2,
-                        style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.w600),
+                      Container(
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              top: 2.0, bottom: 2, left: 24, right: 24),
+                          child: Text(
+                            'Break',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(4),
+                            color: Colors.red),
                       ),
-                      SizedBox(
-                        height: 16,
+                      Container(
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 8.0),
+                          child: Text(
+                            'The Word Global Warming Annual Summit',
+                            maxLines: 2,
+                            style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.w600),
+                          ),
+                        ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            Text(
-                              'Mohamad Ahmad',
-                              style:
-                                  TextStyle(fontSize: 10, color: Colors.grey),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 16.0),
-                              child: Icon(
+                      Container(
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 8.0, bottom: 8),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Icon(
                                 Icons.timer,
                                 color: Colors.grey,
                                 size: 15,
                               ),
-                            ),
-                            Text(
-                              'From 10 minuts',
-                              style:
-                                  TextStyle(fontSize: 10, color: Colors.grey),
-                            ),
-                          ],
+                              Text(
+                                'From 10 minuts',
+                                style:
+                                    TextStyle(fontSize: 10, color: Colors.grey),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ],
@@ -132,6 +186,78 @@ class _FirstTabsState extends State<FirstTabs> {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _topstory() {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            children: [
+              SizedBox(
+                width: 100.00,
+                height: 100.00,
+                child: Image(
+                  image: ExactAssetImage('assets/bg1.jpg'),
+                  fit: BoxFit.cover,
+                ),
+              ),
+              SizedBox(
+                width: 8,
+              ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'The Word Global Warming Annual Summit',
+                      maxLines: 2,
+                      style:
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Text(
+                            'Mohamad Ahmad',
+                            style: TextStyle(fontSize: 10, color: Colors.grey),
+                          ),
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 16.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Icon(
+                                    Icons.timer,
+                                    color: Colors.grey,
+                                    size: 15,
+                                  ),
+                                  Text(
+                                    'From 10 minuts',
+                                    style: TextStyle(
+                                        fontSize: 10, color: Colors.grey),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 
