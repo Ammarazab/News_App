@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:news_app_flutter/models/bourding_model.dart';
+import 'package:news_app_flutter/screens/home.dart';
+import 'package:page_view_indicator/page_view_indicator.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class OnboardingScreen extends StatefulWidget {
   @override
@@ -8,9 +11,10 @@ class OnboardingScreen extends StatefulWidget {
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
   List<BoardingModel> pages;
+  ValueNotifier<int> _pageViewNotifier = ValueNotifier(0);
 
   void _addPages() {
-    pages = List<BoardingModel>();
+    pages = <BoardingModel>[];
     pages.add(BoardingModel(
         'Welcome',
         '1- Making friends is easy as waving your hand back and forth in easy step',
@@ -92,14 +96,28 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           );
         },
         itemCount: pages.length,
-        onPageChanged: (index) {},
+        onPageChanged: (index) {
+          _pageViewNotifier.value = index;
+        },
       )),
+      Transform.translate(
+        offset: Offset(0, 175),
+        child: Align(
+          alignment: Alignment.center,
+          child: _pageIndicators(pages.length),
+        ),
+      ),
       Align(
         alignment: Alignment.bottomCenter,
         child: SizedBox(
           width: (MediaQuery.of(context).size.width - 16),
           child: RaisedButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                _goto_home();
+                return HomeScreen();
+              }));
+            },
             color: Colors.red,
             child: Text(
               "Get Strat",
@@ -110,5 +128,32 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         ),
       ),
     ]));
+  }
+
+  Widget _pageIndicators(int length) {
+    return PageViewIndicator(
+      pageIndexNotifier: _pageViewNotifier,
+      length: length,
+      normalBuilder: (animationController, index) => Circle(
+        size: 8.0,
+        color: Colors.grey,
+      ),
+      highlightedBuilder: (animationController, index) => ScaleTransition(
+        scale: CurvedAnimation(
+          parent: animationController,
+          curve: Curves.ease,
+        ),
+        child: Circle(
+          size: 12.0,
+          color: Colors.red,
+        ),
+      ),
+    );
+  }
+
+  // ignore: non_constant_identifier_names
+  void _goto_home() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool('seen', true);
   }
 }
