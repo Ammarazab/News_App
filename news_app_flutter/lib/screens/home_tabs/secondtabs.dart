@@ -16,7 +16,7 @@ class _SecondTabsState extends State<SecondTabs> {
           ),
         );
       },
-      itemCount: 20,
+      // itemCount: 20,
     );
   }
    Widget _topstory() {

@@ -40,7 +40,7 @@ class _ThiredTabsState extends State<ThiredTabs> {
           ),
         );
       },
-      itemCount: 20,
+      // itemCount: 20,
     );
   }
 
