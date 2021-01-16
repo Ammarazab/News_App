@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import "package:flutter/material.dart";
 import 'package:news_app_flutter/models/bourding_home_news.dart';
 import 'package:news_app_flutter/utilities/apptheme.dart';
@@ -8,6 +10,16 @@ class FirstTabs extends StatefulWidget {
 }
 
 class _FirstTabsState extends State<FirstTabs> {
+  List<Color> _colors = [
+    Colors.red,
+    Colors.green,
+    Colors.brown,
+    Colors.teal,
+  ];
+  Random _random = Random();
+  Color _setcolor() {
+    return _colors[ _random.nextInt(_colors.length)];
+  }
   List<BoardingHomeModel> pages;
   ValueNotifier<int> _pageViewNotifier = ValueNotifier(0);
 
@@ -145,7 +157,7 @@ class _FirstTabsState extends State<FirstTabs> {
                         ),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(4),
-                            color: Colors.red),
+                            color: _setcolor()),
                       ),
                       Container(
                         child: Padding(
