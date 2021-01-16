@@ -21,16 +21,19 @@ class _TwitterFeedState extends State<TwitterFeed> {
           centerTitle: false,
         ),
         drawer: Navigatordrawer(),
-        body: ListView.builder(
-          itemBuilder: (context, position) {
-            return Card(
-              child: Column(
-                children: [_cardHeader(), _cardbody(),_drawLine(), _cardfooter(),
-              
-                ],
-              ),
-            );
-          },
+        body: Padding(
+          padding: const EdgeInsets.all(4.0),
+          child: ListView.builder(
+            itemBuilder: (context, position) {
+              return Card(
+                child: Column(
+                  children: [_cardHeader(), _cardbody(),_drawLine(), _cardfooter(),
+                
+                  ],
+                ),
+              );
+            },
+          ),
         ));
   }
 
@@ -48,7 +51,7 @@ class _TwitterFeedState extends State<TwitterFeed> {
             Row(
               children: <Widget>[
                 Text(
-                  'Christina Meyers',
+                  'Mohamad Mahmoud',
                   style: TextStyle(
                     color: Colors.grey.shade900,
                     fontSize: 16,
@@ -59,7 +62,7 @@ class _TwitterFeedState extends State<TwitterFeed> {
                   width: 8,
                 ),
                 Text(
-                  '@ch_meyers',
+                  '@mh_mahmoud',
                   style: TextStyle(
                     color: Colors.grey,
                   ),

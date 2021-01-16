@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:news_app_flutter/models/map_menu.dart';
+import 'package:news_app_flutter/screens/facebook_feed.dart';
 import 'package:news_app_flutter/screens/headline_news.dart';
 import 'package:news_app_flutter/screens/home.dart';
+import 'package:news_app_flutter/screens/instagram_feed.dart';
 import 'package:news_app_flutter/screens/twitterfeed.dart';
 
 class Navigatordrawer extends StatefulWidget {
@@ -14,6 +16,8 @@ class _NavigatordrawerState extends State<Navigatordrawer> {
     NavMenuItem('Explore', () => HomeScreen()),
     NavMenuItem('Headline News', () => HeadLineNews()),
     NavMenuItem('Twitter Feed', () => TwitterFeed()),
+    NavMenuItem('Instagram Feed', () => InstagramFeed()),
+    NavMenuItem('Facebook Feed', () => FacebookFeed()),
     NavMenuItem('Read Later', () => HomeScreen()),
     NavMenuItem('Videos', () => HeadLineNews()),
     NavMenuItem('Photos', () => HomeScreen()),
